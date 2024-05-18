@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guardian;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,10 +15,10 @@ class GuardianController extends Controller
      */
     public function index()
     {
-        // get all guards sorted by the latest
-        $guardians = Guardian::latest()->get();
+        // get all users sorted by the latest and get all users where is_admin = false
+        $users = User::where('is_admin', false)->latest()->get();
 
-        return view('pages.guardians.index', compact('guardians'));
+        return view('pages.guardians.index', compact('users'));
     }
 
     /**
@@ -40,8 +41,9 @@ class GuardianController extends Controller
         // validate the request
         $request->validate([
             'student_id' => 'required|exists:students,id',
-            'id_number' => 'required|numeric|unique:guards,id_number|digits:16',
+            'id_number' => 'required|numeric|unique:users,id_number|digits:16',
             'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
             'gender' => 'required|in:male,female',
             'relationship' => 'required|string',
             'job' => 'required|string',
@@ -54,7 +56,7 @@ class GuardianController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = $image->hashName();
-            $image->storeAs('public/guards', $imageName);
+            $image->storeAs('public/guardians', $imageName);
         }
 
         // if image is not available or null
@@ -63,10 +65,11 @@ class GuardianController extends Controller
         }
 
         // create a new guard
-        Guardian::create([
+        User::create([
             'student_id' => $request->student_id,
             'id_number' => $request->id_number,
             'name' => $request->name,
+            'email' => $request->email,
             'gender' => $request->gender,
             'relationship' => $request->relationship,
             'job' => $request->job,
@@ -77,7 +80,7 @@ class GuardianController extends Controller
         ]);
 
         // redirect to the guards index
-        return redirect()->route('guardians.index')->with(['alert-type' => 'success', 'message' => 'Guardian created successfully!']);
+        return redirect()->route('guardians.index')->with(['alert-type' => 'success', 'message' => 'Wali berhasil dibuat!']);
     }
 
     /**
@@ -93,8 +96,8 @@ class GuardianController extends Controller
      */
     public function edit(string $id)
     {
-        // get the guard by id
-        $guardian = Guardian::findOrFail($id);
+        // get the user by id
+        $guardian = User::findOrFail($id);
 
         // get all students
         $students = Student::all();
@@ -113,6 +116,7 @@ class GuardianController extends Controller
             'student_id' => 'required|exists:students,id',
             'id_number' => 'required|numeric|digits:16',
             'name' => 'required|string|max:255',
+            'email' => 'required|email',
             'gender' => 'required|in:male,female',
             'relationship' => 'required|string',
             'job' => 'required|string',
@@ -122,13 +126,13 @@ class GuardianController extends Controller
         ]);
 
         // get the guard by id
-        $guardian = Guardian::findOrFail($id);
+        $guardian = User::findOrFail($id);
 
         // upload the image when it is available
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = $image->hashName();
-            $image->storeAs('public/guards', $imageName);
+            $image->storeAs('public/guardians', $imageName);
 
             // delete the old image
             if ($guardian->image) {
@@ -146,6 +150,7 @@ class GuardianController extends Controller
             'student_id' => $request->student_id,
             'id_number' => $request->id_number,
             'name' => $request->name,
+            'email' => $request->email,
             'gender' => $request->gender,
             'relationship' => $request->relationship,
             'job' => $request->job,
@@ -156,7 +161,7 @@ class GuardianController extends Controller
         ]);
 
         // redirect to the guards index
-        return redirect()->route('guardians.index')->with(['alert-type' => 'success', 'message' => 'Guardian updated successfully!']);
+        return redirect()->route('guardians.index')->with(['alert-type' => 'success', 'message' => 'Wali berhasil diperbarui!']);
     }
 
     /**
@@ -165,7 +170,7 @@ class GuardianController extends Controller
     public function destroy(string $id)
     {
         // get the guard by id
-        $guardian = Guardian::findOrFail($id);
+        $guardian = User::findOrFail($id);
 
         // delete the guard image
         if ($guardian->image) {
@@ -176,13 +181,13 @@ class GuardianController extends Controller
         $guardian->delete();
 
         // redirect to the guards index
-        return redirect()->route('guardians.index')->with(['alert-type' => 'success', 'message' => 'Guardian deleted successfully!']);
+        return redirect()->route('guardians.index')->with(['alert-type' => 'success', 'message' => 'Wali berhasil dihapus!']);
     }
 
     public function resetPassword(string $id)
     {
         // get the guard by id
-        $guardian = Guardian::findOrFail($id);
+        $guardian = User::findOrFail($id);
 
         // update the guard password
         $guardian->update([
@@ -190,6 +195,6 @@ class GuardianController extends Controller
         ]);
 
         // redirect to the guards index
-        return redirect()->route('guardians.index')->with(['alert-type' => 'success', 'message' => 'Guardian password reset successfully!']);
+        return redirect()->route('guardians.index')->with(['alert-type' => 'success', 'message' => 'Reset password berhasil!']);
     }
 }

@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    Create Grade
+    Buat Kelas
 @endsection
 
 @section('content')
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Create Grade</h1>
+        <h1 class="h3 mb-4 text-gray-800">Buat Kelas</h1>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -16,8 +16,8 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name="name" placeholder="Enter name" value="{{ old('name') }}"
+                        <label>Nama</label>
+                        <input type="text" name="name" placeholder="Masukan nama" value="{{ old('name') }}"
                             class="form-control" @error('name') is-invalid @enderror">
                         @error('name')
                             <div class="invalid-feedback" style="display: block">
@@ -28,9 +28,9 @@
                 </div>
                 <div class="card-footer text-right">
                     <a href="{{ route('grades.index') }}" class="btn btn-secondary">
-                        <span class="text">Cancel</span>
+                        <span class="text">Batal</span>
                     </a>
-                    <button class="btn btn-primary" type="submit">Create</button>
+                    <button class="btn btn-primary" type="submit">Buat</button>
                 </div>
             </form>
         </div>

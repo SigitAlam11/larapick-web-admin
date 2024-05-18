@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Users
+    Admin
 @endsection
 
 @push('extra-style')
@@ -13,14 +13,14 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Users</h1>
+        <h1 class="h3 mb-4 text-gray-800">Admin</h1>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                <h6 class="m-0 font-weight-bold text-primary">List of Users</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Daftar Admin</h6>
                 <a href="{{ route('users.create') }}" class="btn btn-primary">
-                    <span class="text">New User</span>
+                    <span class="text">Admin Baru</span>
                 </a>
             </div>
             <div class="card-body">
@@ -29,7 +29,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Name</th>
+                                <th>Nama</th>
                                 <th>Email</th>
                                 {{-- <th>Photo</th> --}}
                                 <th>Action</th>

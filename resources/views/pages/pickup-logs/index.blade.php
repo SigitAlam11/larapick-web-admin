@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Pickup Logs
+    Log Penjemputan
 @endsection
 
 @push('extra-style')
@@ -13,12 +13,12 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800"> Pickup Logs</h1>
+        <h1 class="h3 mb-4 text-gray-800">Log Penjemputan</h1>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                <h6 class="m-0 font-weight-bold text-primary">List of Pickup Logs</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Daftar Log Penjemputan</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -26,10 +26,10 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Student</th>
-                                <th>Pickup By</th>
-                                <th>Pickup Time</th>
-                                <th>Confirm By</th>
+                                <th>Siswa</th>
+                                <th>Wali</th>
+                                <th>Waktu</th>
+                                <th>Konfirmasi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,9 +37,9 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $pickupLog->student->name }}</td>
-                                    <td>{{ $pickupLog->guardian->name }}</td>
+                                    <td>{{ $pickupLog->guardian->name }} </td>
                                     <td>{{ $pickupLog->pickup_time }}</td>
-                                    <td>{{ $pickupLog->user->name }}</td>
+                                    <td>{{ $pickupLog->admin->name }} </td>
                                 </tr>
                             @endforeach
                         </tbody>

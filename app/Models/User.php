@@ -45,8 +45,18 @@ class User extends Authenticatable
         ];
     }
 
-    public function pickupLogs()
+    public function student()
     {
-        return $this->hasMany(PickupLog::class);
+        return $this->belongsTo(Student::class);
+    }
+
+    public function adminLogs()
+    {
+        return $this->hasMany(PickupLog::class, 'admin_id');
+    }
+
+    public function guardianLogs()
+    {
+        return $this->hasMany(PickupLog::class, 'guardian_id');
     }
 }

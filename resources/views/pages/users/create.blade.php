@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    Create User
+    Buat Admin
 @endsection
 
 @section('content')
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Create User</h1>
+        <h1 class="h3 mb-4 text-gray-800">Buat Admin</h1>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -16,8 +16,8 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name="name" placeholder="Enter name" value="{{ old('name') }}"
+                        <label>Nama</label>
+                        <input type="text" name="name" placeholder="Masukan nama" value="{{ old('name') }}"
                             class="form-control" @error('name') is-invalid @enderror">
                         @error('name')
                             <div class="invalid-feedback" style="display: block">
@@ -28,7 +28,7 @@
 
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="text" name="email" placeholder="Enter email" value="{{ old('email') }}"
+                        <input type="text" name="email" placeholder="Masukan email" value="{{ old('email') }}"
                             class="form-control" @error('email') is-invalid @enderror">
                         @error('email')
                             <div class="invalid-feedback" style="display: block">
@@ -40,9 +40,9 @@
 
                 <div class="card-footer text-right">
                     <a href="{{ route('users.index') }}" class="btn btn-secondary">
-                        <span class="text">Cancel</span>
+                        <span class="text">Batal</span>
                     </a>
-                    <button class="btn btn-primary" type="submit">Create</button>
+                    <button class="btn btn-primary" type="submit">Buat</button>
                 </div>
             </form>
         </div>

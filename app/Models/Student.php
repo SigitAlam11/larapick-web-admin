@@ -9,9 +9,9 @@ class Student extends Model
 {
     use HasFactory;
 
-    public function guardians()
+    public function users()
     {
-        return $this->hasMany(Guardian::class);
+        return $this->hasMany(User::class);
     }
 
     public function grade()

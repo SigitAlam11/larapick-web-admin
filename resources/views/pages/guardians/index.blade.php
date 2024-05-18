@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Guards
+    Wali
 @endsection
 
 @push('extra-style')
@@ -13,14 +13,14 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Guards</h1>
+        <h1 class="h3 mb-4 text-gray-800">Wali</h1>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                <h6 class="m-0 font-weight-bold text-primary">List of Guards</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Daftar Wali</h6>
                 <a href="{{ route('guardians.create') }}" class="btn btn-primary">
-                    <span class="text">New Guard</span>
+                    <span class="text">Wali Baru</span>
                 </a>
             </div>
             <div class="card-body">
@@ -29,35 +29,34 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>ID Number</th>
-                                <th>Name</th>
-                                <th>Student</th>
-                                <th>Relationship</th>
-                                <th>Phone</th>
-                                <th>Action</th>
+                                <th>NIK</th>
+                                <th>Nama</th>
+                                <th>Siswa</th>
+                                <th>Hubungan</th>
+                                <th>Nomor Telepon</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($guardians as $guardian)
+                            @foreach ($users as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $guardian->id_number }}</td>
-                                    <td>{{ $guardian->name }}</td>
-                                    <td>{{ $guardian->student->name }}</td>
-                                    <td>{{ $guardian->relationship }}</td>
-                                    <td>{{ $guardian->phone }}</td>
+                                    <td>{{ $user->id_number }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->student->name }}</td>
+                                    <td>{{ $user->relationship }}</td>
+                                    <td>{{ $user->phone }}</td>
                                     <td>
-                                        <a href="{{ route('guardians.edit', $guardian->id) }}"
-                                            class="btn btn-sm btn-warning">
+                                        <a href="{{ route('guardians.edit', $user->id) }}" class="btn btn-sm btn-warning">
                                             <i class="fas fa-edit"></i>
                                         </a>
 
-                                        <a href="{{ route('guardians.reset-password', $guardian->id) }}"
+                                        <a href="{{ route('guardians.reset-password', $user->id) }}"
                                             class="btn btn-sm btn-primary">
-                                            <i class="fas fa-key"></i>
+                                            <i class="fa fa-lock"></i>
                                         </a>
 
-                                        <form action="{{ route('guardians.destroy', $guardian->id) }}" method="POST"
+                                        <form action="{{ route('guardians.destroy', $user->id) }}" method="POST"
                                             class="d-inline">
                                             @csrf
                                             @method('delete')

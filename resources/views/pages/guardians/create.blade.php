@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Create Guardian
+    Buat Wali
 @endsection
 
 @push('extra-style')
@@ -15,7 +15,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Create Guardian</h1>
+        <h1 class="h3 mb-4 text-gray-800">Buat Wali</h1>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -23,10 +23,10 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Student</label>
+                        <label>Siswa</label>
                         <select name="student_id" id="basic-usage"
                             class="form-control @error('student_id') is-invalid @enderror">
-                            <option value="">-- Choose student --</option>
+                            <option value="">-- Pilih siswa --</option>
                             @foreach ($students as $student)
                                 <option value="{{ $student->id }}" @if (old('student_id') == $student->id) selected @endif>
                                     {{ $student->name }}</option>
@@ -39,14 +39,24 @@
                         @enderror
                     </div>
 
+                    <div class="form-group">
+                        <label>NIK</label>
+                        <input type="text" name="id_number" placeholder="Masukan NIK" value="{{ old('id_number') }}"
+                            class="form-control" @error('id_number') is-invalid @enderror">
+                        @error('id_number')
+                            <div class="invalid-feedback" style="display: block">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>ID Number</label>
-                                <input type="text" name="id_number" placeholder="Enter id number"
-                                    value="{{ old('id_number') }}" class="form-control"
-                                    @error('id_number') is-invalid @enderror">
-                                @error('id_number')
+                                <label>Nama</label>
+                                <input type="text" name="name" placeholder="Masukan nama" value="{{ old('name') }}"
+                                    class="form-control" @error('name') is-invalid @enderror">
+                                @error('name')
                                     <div class="invalid-feedback" style="display: block">
                                         {{ $message }}
                                     </div>
@@ -56,10 +66,10 @@
 
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" name="name" placeholder="Enter name" value="{{ old('name') }}"
-                                    class="form-control" @error('name') is-invalid @enderror">
-                                @error('name')
+                                <label>Email</label>
+                                <input type="email" name="email" placeholder="Masukan email" value="{{ old('email') }}"
+                                    class="form-control" @error('email') is-invalid @enderror">
+                                @error('email')
                                     <div class="invalid-feedback" style="display: block">
                                         {{ $message }}
                                     </div>
@@ -71,11 +81,13 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Gender</label>
+                                <label>Jenis Kelamin</label>
                                 <select name="gender" class="form-control @error('gender') is-invalid @enderror">
-                                    <option value="">-- Choose gender --</option>
-                                    <option value="male" @if (old('gender') == 'male') selected @endif>Male</option>
-                                    <option value="female" @if (old('gender') == 'female') selected @endif>Female</option>
+                                    <option value="">-- Pilih Jenis Kelamin --</option>
+                                    <option value="male" @if (old('gender') == 'male') selected @endif>Laki-laki
+                                    </option>
+                                    <option value="female" @if (old('gender') == 'female') selected @endif>Perempuan
+                                    </option>
                                 </select>
                                 @error('gender')
                                     <div class="invalid-feedback">
@@ -87,8 +99,8 @@
 
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Relationship</label>
-                                <input type="text" name="relationship" placeholder="Enter relationship"
+                                <label>Hubungan</label>
+                                <input type="text" name="relationship" placeholder="Masukan hubungan"
                                     value="{{ old('relationship') }}" class="form-control"
                                     @error('relationship') is-invalid @enderror">
                                 @error('relationship')
@@ -103,9 +115,9 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Job</label>
-                                <input type="text" name="job" placeholder="Enter job" value="{{ old('job') }}"
-                                    class="form-control" @error('job') is-invalid @enderror">
+                                <label>Pekerjaan</label>
+                                <input type="text" name="job" placeholder="Masukan pekerjaan"
+                                    value="{{ old('job') }}" class="form-control" @error('job') is-invalid @enderror">
                                 @error('job')
                                     <div class="invalid-feedback" style="display: block">
                                         {{ $message }}
@@ -116,9 +128,10 @@
 
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Phone</label>
-                                <input type="text" name="phone" placeholder="Enter phone" value="{{ old('phone') }}"
-                                    class="form-control" @error('phone') is-invalid @enderror">
+                                <label>Nomor Telepon</label>
+                                <input type="text" name="phone" placeholder="Masukan telepon"
+                                    value="{{ old('phone') }}" class="form-control"
+                                    @error('phone') is-invalid @enderror">
                                 @error('phone')
                                     <div class="invalid-feedback" style="display: block">
                                         {{ $message }}
@@ -130,8 +143,8 @@
 
 
                     <div class="form-group">
-                        <label>Address</label>
-                        <textarea name="address" placeholder="Enter address" class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
+                        <label>Alamat</label>
+                        <textarea name="address" placeholder="Masukan alamat" class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
                         @error('address')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -140,9 +153,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Photo</label>
-                        <input type="file" name="image" placeholder="Enter photo" value="{{ old('image') }}"
-                            class="form-control" @error('image') is-invalid @enderror">
+                        <label>Foto</label>
+                        <input type="file" name="image" value="{{ old('image') }}" class="form-control"
+                            @error('image') is-invalid @enderror">
                         @error('image')
                             <div class="invalid-feedback" style="display: block">
                                 {{ $message }}
@@ -152,7 +165,7 @@
 
                 </div>
                 <div class="card-footer text-right">
-                    <a href="{{ route('guards.index') }}" class="btn btn-secondary">
+                    <a href="{{ route('guardians.index') }}" class="btn btn-secondary">
                         <span class="text">Cancel</span>
                     </a>
                     <button class="btn btn-primary" type="submit">Create</button>

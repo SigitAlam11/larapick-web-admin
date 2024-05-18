@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-    Create Student
+    Buat Siswa
 @endsection
 
 @section('content')
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Create Student</h1>
+        <h1 class="h3 mb-4 text-gray-800">Buat Siswa</h1>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -17,8 +17,8 @@
                 <div class="card-body">
 
                     <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name="name" placeholder="Enter name" value="{{ old('name') }}"
+                        <label>Nama</label>
+                        <input type="text" name="name" placeholder="Masukan nama" value="{{ old('name') }}"
                             class="form-control" @error('name') is-invalid @enderror">
                         @error('name')
                             <div class="invalid-feedback" style="display: block">
@@ -30,8 +30,8 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Place of Birth</label>
-                                <input type="text" name="place_of_birth" placeholder="Enter place of birth"
+                                <label>Tempat Lahir</label>
+                                <input type="text" name="place_of_birth" placeholder="Masukan tempat lahir"
                                     value="{{ old('place_of_birth') }}" class="form-control"
                                     @error('place_of_birth') is-invalid @enderror">
                                 @error('place_of_birth')
@@ -43,8 +43,8 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Date of Birth</label>
-                                <input type="date" name="date_of_birth" placeholder="Enter date of birth"
+                                <label>Tanggal Lahir</label>
+                                <input type="date" name="date_of_birth" placeholder="Masukan tanggal lahir"
                                     value="{{ old('date_of_birth') }}" class="form-control"
                                     @error('date_of_birth') is-invalid @enderror">
                                 @error('date_of_birth')
@@ -59,11 +59,13 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Gender</label>
+                                <label>Jenis Kelamin</label>
                                 <select name="gender" class="form-control @error('gender') is-invalid @enderror">
-                                    <option value="">-- Choose gender --</option>
-                                    <option value="male" @if (old('gender') == 'male') selected @endif>Male</option>
-                                    <option value="female" @if (old('gender') == 'female') selected @endif>Female</option>
+                                    <option value="">-- Pilih Jenis Kelamin --</option>
+                                    <option value="male" @if (old('gender') == 'male') selected @endif>Laki-laki
+                                    </option>
+                                    <option value="female" @if (old('gender') == 'female') selected @endif>Perempuan
+                                    </option>
                                 </select>
                                 @error('gender')
                                     <div class="invalid-feedback">
@@ -75,9 +77,9 @@
 
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label>Grade</label>
+                                <label>Kelas</label>
                                 <select name="grade_id" class="form-control @error('grade_id') is-invalid @enderror">
-                                    <option value="">-- Choose grade --</option>
+                                    <option value="">-- Pilih Kelas --</option>
                                     @foreach ($grades as $grade)
                                         <option value="{{ $grade->id }}"
                                             @if (old('grade_id') == $grade->id) selected @endif>{{ $grade->name }}</option>
@@ -93,9 +95,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Phone</label>
-                        <input type="text" name="phone" placeholder="Enter phone" value="{{ old('phone') }}"
-                            class="form-control" @error('phone') is-invalid @enderror">
+                        <label>Nomor Telepon</label>
+                        <input type="text" name="phone" placeholder="Masukan nomor telepon"
+                            value="{{ old('phone') }}" class="form-control" @error('phone') is-invalid @enderror">
                         @error('phone')
                             <div class="invalid-feedback" style="display: block">
                                 {{ $message }}
@@ -104,8 +106,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Address</label>
-                        <textarea name="address" placeholder="Enter address" class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
+                        <label>Alamat</label>
+                        <textarea name="address" placeholder="Masukan alamat" class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
                         @error('address')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -114,9 +116,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Photo</label>
-                        <input type="file" name="image" placeholder="Enter photo" value="{{ old('image') }}"
-                            class="form-control" @error('image') is-invalid @enderror">
+                        <label>Foto</label>
+                        <input type="file" name="image" value="{{ old('image') }}" class="form-control"
+                            @error('image') is-invalid @enderror">
                         @error('image')
                             <div class="invalid-feedback" style="display: block">
                                 {{ $message }}
@@ -127,9 +129,9 @@
                 </div>
                 <div class="card-footer text-right">
                     <a href="{{ route('students.index') }}" class="btn btn-secondary">
-                        <span class="text">Cancel</span>
+                        <span class="text">Batal</span>
                     </a>
-                    <button class="btn btn-primary" type="submit">Create</button>
+                    <button class="btn btn-primary" type="submit">Buat</button>
                 </div>
             </form>
         </div>

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('pickup_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('guardian_id')->constrained('guardians')->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('student_id')->constrained('students')->cascadeOnDelete();
-            $table->dateTime('pickup_time');
+            $table->foreignId('student_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('guardian_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('admin_id')->constrained('users')->cascadeOnDelete();
+            $table->timestamp('pickup_time');
             $table->timestamps();
         });
     }

@@ -16,21 +16,21 @@ class DashboardController extends Controller
         // get counts of students where the status is active
         $studentsCount = Student::where('status', 'active')->count();
 
-        // get the count of guardians where the student status is active
-        $guardiansCount = Guardian::whereHas('student', function ($query) {
+        // get the count of user where is_admin = false and where the student status is active
+        $guardiansCount = User::where('is_admin', false)->whereHas('student', function ($query) {
             $query->where('status', 'active');
         })->count();
 
         // get the count of grades
         $gradesCount = Grade::count();
 
-        // get the count of users
-        $usersCount = User::count();
+        // get the count of users where is_admin = true
+        $usersCount = User::where('is_admin', true)->count();
 
         // get all pickup logs sorted by latest and maximum of 10
         $pickupLogs = PickupLog::latest()->take(10)->get();
 
         // return the view with the counts
-        return view('pages.dashboard.index', compact('studentsCount', 'guardiansCount', 'gradesCount', 'pickupLogs', 'usersCount'));
+        return view('pages.dashboard.index', compact('studentsCount', 'gradesCount', 'usersCount', 'guardiansCount', 'pickupLogs'));
     }
 }
