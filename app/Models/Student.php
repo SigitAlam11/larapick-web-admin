@@ -9,6 +9,15 @@ class Student extends Model
 {
     use HasFactory;
 
+    public function getImageUrlAttribute()
+    {
+        if ($this->image) {
+            return asset('storage/students/' . $this->image);
+        }
+
+        return null;
+    }
+
     public function users()
     {
         return $this->hasMany(User::class);
