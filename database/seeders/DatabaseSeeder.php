@@ -31,11 +31,9 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true,
         ]);
 
-        Grade::factory(2)->create();
-        Student::factory(10)->create();
-        User::factory(10)->create();
-
-        // Guardian::factory(15)->create();
-        PickupLog::factory(50)->create();
+        // Grade::factory(2)->create();
+        // Student::factory(10)->create();
+        // User::factory(10)->create();
+        // PickupLog::factory(50)->create();
     }
 }
