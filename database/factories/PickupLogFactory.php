@@ -17,7 +17,7 @@ class PickupLogFactory extends Factory
     public function definition(): array
     {
         return [
-            'admin_id' => 11,
+            'admin_id' => 1,
             'guardian_id' => $this->faker->numberBetween(2, 10),
             'student_id' => $this->faker->numberBetween(1, 10),
             'pickup_time' => now(),

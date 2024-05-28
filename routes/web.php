@@ -22,6 +22,7 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/pickup-logs', [PickupLogController::class, 'index'])->name('pickup-logs.index');
     Route::resource('/users', UserController::class);
     Route::get('/guardians/{guardian}/reset-password', [GuardianController::class, 'resetPassword'])->name('guardians.reset-password');
+    Route::get('/users/{user}/reset-password', [UserController::class, 'resetPassword'])->name('users.reset-password');
 });
 
 Route::middleware(['auth'])->group(function () {

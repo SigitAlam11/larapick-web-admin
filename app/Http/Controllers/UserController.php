@@ -110,4 +110,18 @@ class UserController extends Controller
         // Redirect to the users index page
         return redirect()->route('users.index')->with(['alert-type' => 'success', 'message' => 'Admin berhasil dihapus!']);
     }
+
+    public function resetPassword(string $id)
+    {
+        // get the guard by id
+        $user = User::findOrFail($id);
+
+        // update the guard password
+        $user->update([
+            'password' =>  bcrypt('password'),
+        ]);
+
+        // redirect to the guards index
+        return redirect()->route('users.index')->with(['alert-type' => 'success', 'message' => 'Reset password berhasil!']);
+    }
 }

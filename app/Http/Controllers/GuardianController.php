@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guardian;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class GuardianController extends Controller
 {
@@ -77,6 +77,7 @@ class GuardianController extends Controller
             'phone' => $request->phone,
             'image' => $imageName,
             'password' => bcrypt($request->id_number),
+            'qr_code' => Str::random(20),
         ]);
 
         // redirect to the guards index
@@ -157,7 +158,6 @@ class GuardianController extends Controller
             'address' => $request->address,
             'phone' => $request->phone,
             'image' => $imageName,
-            'password' => bcrypt($request->id_number),
         ]);
 
         // redirect to the guards index

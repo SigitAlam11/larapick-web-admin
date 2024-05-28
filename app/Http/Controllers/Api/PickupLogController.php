@@ -46,6 +46,7 @@ class PickupLogController extends Controller
         $pickupLogs = PickupLog::where('guardian_id', $request->user()->id)
             ->whereYear('pickup_time', $request->year)
             ->whereMonth('pickup_time', $request->month)
+            ->orderBy('id', 'desc')
             ->get();
 
         return response()->json([

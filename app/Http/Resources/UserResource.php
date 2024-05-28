@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Student;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -11,11 +9,12 @@ class UserResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
+     * @param  Illuminate\Http\Request  $request
      * @return array<string, mixed>
      */
-    public function toArray(Request $request): array
+    public function toArray($request): array
     {
-        return [
+        $userData = [
             'id' => $this->id,
             'id_number' => $this->id_number,
             'name' => $this->name,
@@ -25,9 +24,13 @@ class UserResource extends JsonResource
             'job' => $this->job,
             'address' => $this->address,
             'phone' => $this->phone,
+            'qr_code' => $this->qr_code,
             'image' => $this->image_url,
             'is_admin' => $this->is_admin,
-            'student' => [
+        ];
+
+        if ($this->student) {
+            $studentData = [
                 'id' => $this->student->id,
                 'name' => $this->student->name,
                 'place_of_birth' => $this->student->place_of_birth,
@@ -36,10 +39,16 @@ class UserResource extends JsonResource
                 'address' => $this->student->address,
                 'phone' => $this->student->phone,
                 'status' => $this->student->status,
-                'qr_code' => $this->student->qr_code,
                 'image' => $this->student->image_url,
                 'class' => GradeResource::make($this->student->grade),
-            ],
-        ];
+            ];
+        } else {
+            // If student is null, set studentData to null
+            $studentData = null;
+        }
+
+        $userData['student'] = $studentData;
+
+        return $userData;
     }
 }

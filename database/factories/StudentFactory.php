@@ -27,7 +27,6 @@ class StudentFactory extends Factory
             'address' => $this->faker->address(),
             'phone' => $this->faker->phoneNumber(),
             'image' => null,
-            'qr_code' => Str::random(20),
         ];
     }
 }

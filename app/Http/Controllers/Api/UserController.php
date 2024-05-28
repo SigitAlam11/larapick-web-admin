@@ -29,7 +29,7 @@ class UserController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'status' => false,
-                'message' => 'Unauthorized'
+                'message' => 'Email atau password salah'
             ], 200);
         }
 
@@ -85,6 +85,24 @@ class UserController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Successfully update password',
+        ], 200);
+    }
+
+    public function show(string $id)
+    {
+        $guardian = User::where('qr_code', $id)->first();
+
+        if (!$guardian) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Guardian not found',
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Successfully fetched guardian data',
+            'data' => UserResource::make($guardian),
         ], 200);
     }
 }

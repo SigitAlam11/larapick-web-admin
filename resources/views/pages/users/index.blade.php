@@ -46,6 +46,12 @@
                                             <i class="fas fa-edit"></i>
                                         </a>
 
+
+                                        <a href="{{ route('users.reset-password', $user->id) }}"
+                                            class="btn btn-sm btn-primary">
+                                            <i class="fa fa-lock"></i>
+                                        </a>
+
                                         <form action="{{ route('users.destroy', $user->id) }}" method="POST"
                                             class="d-inline">
                                             @csrf

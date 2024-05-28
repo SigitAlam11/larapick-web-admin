@@ -9,7 +9,7 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/login', [App\Http\Controllers\Api\UserController::class, 'login']);
 
-Route::get('/student/{id}', [App\Http\Controllers\Api\StudentController::class, 'show'])->middleware('auth:sanctum');
+Route::get('/user/{id}', [App\Http\Controllers\Api\UserController::class, 'show'])->middleware('auth:sanctum');
 
 Route::post('/logout', [App\Http\Controllers\Api\UserController::class, 'logout'])->middleware('auth:sanctum');
 

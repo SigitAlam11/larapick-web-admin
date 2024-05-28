@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('address');
             $table->string('phone');
             $table->string('image')->nullable();
-            $table->string('qr_code');
             $table->timestamps();
         });
     }
