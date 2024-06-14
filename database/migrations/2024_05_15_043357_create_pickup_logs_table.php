@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('pickup_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('guardian_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('guardian_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->foreignId('admin_id')->constrained('users')->cascadeOnDelete();
             $table->timestamp('pickup_time');
+            $table->enum('status', ['done', 'on_progress']);
+            $table->string('note')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

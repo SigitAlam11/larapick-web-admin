@@ -22,13 +22,16 @@ class PickupResource extends JsonResource
                 'name' => $this->student->name,
             ],
             'guardian' => [
-                'id' => $this->guardian->id,
-                'name' => $this->guardian->name,
+                'id' => $this->guardian->id ?? null,
+                'name' => $this->guardian->name ?? null,
             ],
             'admin' => [
                 'id' => $this->admin->id,
                 'name' => $this->admin->name,
             ],
+            'status' => $this->status,
+            'note' => $this->note,
+            'image' => $this->image_url,
         ];
     }
 }

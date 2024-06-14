@@ -9,6 +9,15 @@ class PickupLog extends Model
 {
     use HasFactory;
 
+    public function getImageUrlAttribute()
+    {
+        if ($this->image) {
+            return asset('storage/pickups/' . $this->image);
+        }
+
+        return null;
+    }
+
     public function guardian()
     {
         return $this->belongsTo(User::class, 'guardian_id');
@@ -18,7 +27,6 @@ class PickupLog extends Model
     {
         return $this->belongsTo(User::class, 'admin_id');
     }
-
 
     public function student()
     {

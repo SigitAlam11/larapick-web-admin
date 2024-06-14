@@ -30,6 +30,9 @@
                                 <th>Wali</th>
                                 <th>Waktu</th>
                                 <th>Konfirmasi</th>
+                                <th>Status</th>
+                                <th>Catatan</th>
+                                <th>Image</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -37,9 +40,23 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $pickupLog->student->name }}</td>
-                                    <td>{{ $pickupLog->guardian->name }} </td>
+                                    <td>{{ $pickupLog->guardian->name ?? '-' }} </td>
                                     <td>{{ $pickupLog->pickup_time }}</td>
                                     <td>{{ $pickupLog->admin->name }} </td>
+                                    @if ($pickupLog->status == 'done')
+                                        <td><span class="badge badge-success">{{ $pickupLog->status }}</span></td>
+                                    @else
+                                        <td><span class="badge badge-warning">{{ $pickupLog->status }}</span></td>
+                                    @endif
+                                    <td>{{ $pickupLog->note ?? '-' }}</td>
+                                    <td>
+                                        @if ($pickupLog->image)
+                                            <img src="{{ asset('storage/pickups/' . $pickupLog->image) }}"
+                                                alt="{{ $pickupLog->name }}" width="80" height="80">
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

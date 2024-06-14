@@ -21,6 +21,8 @@ class PickupLogFactory extends Factory
             'guardian_id' => $this->faker->numberBetween(2, 10),
             'student_id' => $this->faker->numberBetween(1, 10),
             'pickup_time' => now(),
+            'status' => $this->faker->randomElement(['done', 'on_progress']),
+            'note' => $this->faker->sentence,
         ];
     }
 }
