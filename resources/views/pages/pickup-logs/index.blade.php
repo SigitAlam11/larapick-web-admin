@@ -32,7 +32,7 @@
                                 <th>Konfirmasi</th>
                                 <th>Status</th>
                                 <th>Catatan</th>
-                                <th>Image</th>
+                                <th>Foto</th>
                             </tr>
                         </thead>
                         <tbody>
