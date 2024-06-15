@@ -17,10 +17,12 @@ class PickupLogFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->numberBetween(1, 10),
-            'guardian_id' => $this->faker->numberBetween(1, 10),
+            'admin_id' => 1,
+            'guardian_id' => $this->faker->numberBetween(2, 10),
             'student_id' => $this->faker->numberBetween(1, 10),
             'pickup_time' => now(),
+            'status' => $this->faker->randomElement(['done', 'on_progress']),
+            'note' => $this->faker->sentence,
         ];
     }
 }

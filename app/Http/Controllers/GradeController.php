@@ -44,7 +44,7 @@ class GradeController extends Controller
         ]);
 
         // return back with a success message
-        return redirect()->route('grades.index')->with(['alert-type' => 'success', 'message' => 'Grade created successfully!']);
+        return redirect()->route('grades.index')->with(['alert-type' => 'success', 'message' => 'Kelas berhasil dibuat!']);
     }
 
     /**
@@ -86,7 +86,7 @@ class GradeController extends Controller
         ]);
 
         // return back with a success message
-        return redirect()->route('grades.index')->with(['alert-type' => 'success', 'message' => 'Grade updated successfully!']);
+        return redirect()->route('grades.index')->with(['alert-type' => 'success', 'message' => 'Kelas berhasil diperbarui!']);
     }
 
     /**
@@ -101,6 +101,6 @@ class GradeController extends Controller
         $grade->delete();
 
         // return back with a success message
-        return redirect()->route('grades.index')->with(['alert-type' => 'success', 'message' => 'Grade deleted successfully!']);
+        return redirect()->route('grades.index')->with(['alert-type' => 'success', 'message' => 'Kelas berhasil dihapus!']);
     }
 }

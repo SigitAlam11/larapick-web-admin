@@ -12,8 +12,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        // Get all users sorted by the latest
-        $users = User::latest()->get();
+        // Get all users sorted by the latest and get all users where is_admin = true, hide thw user who authenticated
+        $users = User::latest()->where('is_admin', true)->where('id', '!=', auth()->id())->get();
 
         // return the view with the users
         return view('pages.users.index', compact('users'));
@@ -36,18 +36,20 @@ class UserController extends Controller
         // Validate the request
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
+
         ]);
 
         // Create the user
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
+            'is_admin' => true
         ]);
 
         // Redirect to the users index page
-        return redirect()->route('users.index')->with(['alert-type' => 'success', 'message' => 'User created successfully!']);
+        return redirect()->route('users.index')->with(['alert-type' => 'success', 'message' => 'Admin berhasil dibuat!']);
     }
 
     /**
@@ -63,7 +65,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        // Get the user by id
+        // Get the user by id sorted by the latest and sort by is_admin = true
         $user = User::findOrFail($id);
 
         // Return the view for editing a user
@@ -91,7 +93,7 @@ class UserController extends Controller
         ]);
 
         // Redirect to the users index page
-        return redirect()->route('users.index')->with(['alert-type' => 'success', 'message' => 'User updated successfully!']);
+        return redirect()->route('users.index')->with(['alert-type' => 'success', 'message' => 'Admin berhasil diperbarui!']);
     }
 
     /**
@@ -106,6 +108,20 @@ class UserController extends Controller
         $user->delete();
 
         // Redirect to the users index page
-        return redirect()->route('users.index')->with(['alert-type' => 'success', 'message' => 'User deleted successfully!']);
+        return redirect()->route('users.index')->with(['alert-type' => 'success', 'message' => 'Admin berhasil dihapus!']);
+    }
+
+    public function resetPassword(string $id)
+    {
+        // get the guard by id
+        $user = User::findOrFail($id);
+
+        // update the guard password
+        $user->update([
+            'password' =>  bcrypt('password'),
+        ]);
+
+        // redirect to the guards index
+        return redirect()->route('users.index')->with(['alert-type' => 'success', 'message' => 'Reset password berhasil!']);
     }
 }

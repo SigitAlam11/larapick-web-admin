@@ -23,11 +23,11 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Grades</div>
+                                    Kelas</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $gradesCount }}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                <i class="fas fa-folder fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -40,11 +40,11 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Students</div>
+                                    Siswa</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $studentsCount }}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                <i class="fas fa-user fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -58,11 +58,11 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                    Guardians</div>
+                                    Wali</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $guardiansCount }}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                <i class="fas fa-user fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -75,11 +75,11 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Users</div>
+                                    Admin</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $usersCount }}</div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                <i class="fas fa-user fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
             <div class="col-lg-12">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                        <h6 class="m-0 font-weight-bold text-primary">List of Last Pickup</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Daftar Log Penjemputan Terakhir</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -101,10 +101,13 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Student</th>
-                                        <th>Pickup By</th>
-                                        <th>Pickup Time</th>
-                                        <th>Confirm By</th>
+                                        <th>Siswa</th>
+                                        <th>Wali</th>
+                                        <th>Waktu</th>
+                                        <th>Konfirmasi</th>
+                                        <th>Status</th>
+                                        <th>Catatan</th>
+                                        <th>Foto</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -112,9 +115,23 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $pickupLog->student->name }}</td>
-                                            <td>{{ $pickupLog->guardian->name }}</td>
+                                            <td>{{ $pickupLog->guardian->name ?? '-' }} </td>
                                             <td>{{ $pickupLog->pickup_time }}</td>
-                                            <td>{{ $pickupLog->user->name }}</td>
+                                            <td>{{ $pickupLog->admin->name }}</td>
+                                            @if ($pickupLog->status == 'done')
+                                                <td><span class="badge badge-success">{{ $pickupLog->status }}</span></td>
+                                            @else
+                                                <td><span class="badge badge-danger">{{ $pickupLog->status }}</span></td>
+                                            @endif
+                                            <td>{{ $pickupLog->note ?? '-' }}</td>
+                                            <td>
+                                                @if ($pickupLog->image)
+                                                    <img src="{{ asset('storage/pickups/' . $pickupLog->image) }}"
+                                                        alt="{{ $pickupLog->name }}" width="80" height="80">
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

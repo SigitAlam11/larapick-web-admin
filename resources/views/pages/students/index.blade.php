@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Students
+    Siswa
 @endsection
 
 @push('extra-style')
@@ -13,14 +13,14 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Students</h1>
+        <h1 class="h3 mb-4 text-gray-800">Siswa</h1>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                <h6 class="m-0 font-weight-bold text-primary">List of Students</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Daftar Siswa</h6>
                 <a href="{{ route('students.create') }}" class="btn btn-primary">
-                    <span class="text">New Student</span>
+                    <span class="text">Siswa Baru</span>
                 </a>
             </div>
             <div class="card-body">
@@ -29,11 +29,11 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Name</th>
-                                <th>Grade</th>
+                                <th>Nama</th>
+                                <th>Kelas</th>
                                 <th>Status</th>
                                 {{-- <th>Photo</th> --}}
-                                <th>Action</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>

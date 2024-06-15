@@ -22,31 +22,31 @@
     <hr class="sidebar-divider">
     <!-- Heading -->
     <div class="sidebar-heading">
-        Pickup
+        Penjemputan
     </div>
 
     <li class="nav-item {{ Request::is('grades*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('grades.index') }}">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Grades</span></a>
+            <span>Kelas</span></a>
     </li>
 
     <li class="nav-item {{ Request::is('students*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('students.index') }}">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Students</span></a>
+            <i class="fas fa-fw fa-user"></i>
+            <span>Siswa</span></a>
     </li>
 
     <li class="nav-item {{ Request::is('guardians*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('guardians.index') }}">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Guardians</span></a>
+            <i class="fas fa-fw fa-user"></i>
+            <span>Wali</span></a>
     </li>
 
     <li class="nav-item {{ Request::is('pickup-logs') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('pickup-logs.index') }}">
             <i class="fas fa-fw fa-history"></i>
-            <span>Pickup Logs</span></a>
+            <span>Log Penjemputan</span></a>
     </li>
 
     <!-- Divider -->
@@ -54,14 +54,14 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Settings
+        Pengaturan
     </div>
 
 
     <li class="nav-item {{ Request::is('users*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('users.index') }}">
             <i class="fas fa-fw fa-user"></i>
-            <span>Users</span></a>
+            <span>Admin</span></a>
     </li>
 
     <!-- Divider -->

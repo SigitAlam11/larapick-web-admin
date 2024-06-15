@@ -6,7 +6,6 @@ use App\Models\Grade;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
@@ -72,11 +71,10 @@ class StudentController extends Controller
             'address' => $request->address,
             'phone' => $request->phone,
             'image' => $imageName,
-            'qr_code' => Str::random(20),
         ]);
 
         // redirect to the students index
-        return redirect()->route('students.index')->with(['alert-type' => 'success', 'message' => 'Student created successfully!']);
+        return redirect()->route('students.index')->with(['alert-type' => 'success', 'message' => 'Siswa berhasil dibuat!']);
     }
 
     /**
@@ -154,7 +152,7 @@ class StudentController extends Controller
         ]);
 
         // redirect to the students index
-        return redirect()->route('students.index')->with(['alert-type' => 'success', 'message' => 'Student updated successfully!']);
+        return redirect()->route('students.index')->with(['alert-type' => 'success', 'message' => 'Siswa berhasil diperbarui!']);
     }
 
     /**
@@ -174,6 +172,6 @@ class StudentController extends Controller
         $student->delete();
 
         // redirect to the students index
-        return redirect()->route('students.index')->with(['alert-type' => 'success', 'message' => 'Student deleted successfully!']);
+        return redirect()->route('students.index')->with(['alert-type' => 'success', 'message' => 'Siswa berhasil dihapus!']);
     }
 }

@@ -23,10 +23,17 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        User::factory(10)->create();
-        Grade::factory(2)->create();
+
+        User::create([
+            'name' => 'Administrator',
+            'email' => 'administrator@mail.test',
+            'password' => bcrypt('password'),
+            'is_admin' => true,
+        ]);
+
+        Grade::factory(4)->create();
         Student::factory(10)->create();
-        Guardian::factory(15)->create();
-        PickupLog::factory(50)->create();
+        User::factory(10)->create();
+        // PickupLog::factory(50)->create();
     }
 }

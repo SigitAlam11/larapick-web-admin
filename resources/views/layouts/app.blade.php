@@ -63,9 +63,9 @@
                     <a class="btn btn-primary" href="#"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                 </div>
-                {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
-                </form> --}}
+                </form>
             </div>
         </div>
     </div>
