@@ -41,11 +41,7 @@ class GuardianController extends Controller
         // validate the request
         $request->validate([
             'student_id' => 'required|exists:students,id',
-<<<<<<< HEAD
-            'id_number' => 'required|numeric|unique:guardians,id_number|digits:16',
-=======
             'id_number' => 'required|numeric|unique:users,id_number|digits:16',
->>>>>>> a0aa86e01b61d63465023a13cd00cc0262b77659
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'gender' => 'required|in:male,female',
