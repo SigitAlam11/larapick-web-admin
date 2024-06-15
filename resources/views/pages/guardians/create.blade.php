@@ -152,7 +152,7 @@
 
                 </div>
                 <div class="card-footer text-right">
-                    <a href="{{ route('guards.index') }}" class="btn btn-secondary">
+                    <a href="{{ route('guardians.index') }}" class="btn btn-secondary">
                         <span class="text">Cancel</span>
                     </a>
                     <button class="btn btn-primary" type="submit">Create</button>
