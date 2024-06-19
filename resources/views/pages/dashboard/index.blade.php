@@ -115,19 +115,46 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $pickupLog->student->name }}</td>
-                                            <td>{{ $pickupLog->guardian->name ?? '-' }} </td>
+                                            <td>{{ $pickupLog->guardian->name ?? '-' }}</td>
                                             <td>{{ $pickupLog->pickup_time }}</td>
                                             <td>{{ $pickupLog->admin->name }}</td>
                                             @if ($pickupLog->status == 'done')
                                                 <td><span class="badge badge-success">{{ $pickupLog->status }}</span></td>
                                             @else
-                                                <td><span class="badge badge-danger">{{ $pickupLog->status }}</span></td>
+                                                <td><span class="badge badge-warning">{{ $pickupLog->status }}</span></td>
                                             @endif
                                             <td>{{ $pickupLog->note ?? '-' }}</td>
                                             <td>
                                                 @if ($pickupLog->image)
-                                                    <img src="{{ asset('storage/pickups/' . $pickupLog->image) }}"
-                                                        alt="{{ $pickupLog->name }}" width="80" height="80">
+                                                    <a href="#" data-toggle="modal"
+                                                        data-target="#imageModal{{ $loop->iteration }}">
+                                                        <img src="{{ asset('storage/pickups/' . $pickupLog->image) }}"
+                                                            alt="{{ $pickupLog->name }}" width="80" height="80">
+                                                    </a>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="imageModal{{ $loop->iteration }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="imageModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg"
+                                                            role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="imageModalLabel">Pratinjau
+                                                                        Foto</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <img src="{{ asset('storage/pickups/' . $pickupLog->image) }}"
+                                                                        alt="{{ $pickupLog->name }}"
+                                                                        style="max-width: 100%; max-height: 500px;">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 @else
                                                     -
                                                 @endif
