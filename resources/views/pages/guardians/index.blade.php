@@ -34,6 +34,7 @@
                                 <th>Siswa</th>
                                 <th>Hubungan</th>
                                 <th>Nomor Telepon</th>
+                                <th>Email</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -46,6 +47,7 @@
                                     <td>{{ $user->student->name }}</td>
                                     <td>{{ $user->relationship }}</td>
                                     <td>{{ $user->phone }}</td>
+                                    <td>{{ $user->email }}</td>
                                     <td>
                                         <a href="{{ route('guardians.edit', $user->id) }}" class="btn btn-sm btn-warning">
                                             <i class="fas fa-edit"></i>
