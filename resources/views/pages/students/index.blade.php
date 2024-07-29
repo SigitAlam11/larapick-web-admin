@@ -47,10 +47,10 @@
                                     @else
                                         <td><span class="badge badge-danger">{{ $student->status }}</span></td>
                                     @endif
-                                    <!-- <td>
-                                        <img src="{{ asset('storage/student/'.$student->image) }}"
+                                     <!-- <td>
+                                        <img src="{{ asset('storage/students/'.$student->image) }}"
                                             alt="{{ $student->name }}" width="80" height="80">
-                                    </td>  -->
+                                    </td>   -->
                                     <td>
                                         <a href="{{ route('students.edit', $student->id) }}" class="btn btn-sm btn-warning">
                                             <i class="fas fa-edit"></i>
