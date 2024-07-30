@@ -82,7 +82,11 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // get the student by id along with related users
+        $student = Student::with('users')->findOrFail($id);
+
+        // return the view for showing a student
+        return view('pages.students.show', compact('student'));
     }
 
     /**

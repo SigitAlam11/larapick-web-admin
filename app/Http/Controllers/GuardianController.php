@@ -89,7 +89,11 @@ class GuardianController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // get the user by id
+        $guardian = User::findOrFail($id);
+
+        // return the view for showing a guard
+        return view('pages.guardians.show', compact('guardian'));
     }
 
     /**
