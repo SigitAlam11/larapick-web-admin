@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         config(['app.locale' => 'id']);
         Carbon::setLocale('id');
-        date_default_timezone_set('Asia/makassar');
+        date_default_timezone_set('Asia/Makassar');
 
         Model::unguard();
 
