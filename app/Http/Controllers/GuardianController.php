@@ -41,7 +41,7 @@ class GuardianController extends Controller
         // validate the request
         $request->validate([
             'student_id' => 'required|exists:students,id',
-            'id_number' => 'required|numeric|unique:users,id_number|digits:16',
+            'id_number' => 'required|numeric|digits:16',
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'gender' => 'required|in:male,female',
@@ -116,7 +116,7 @@ class GuardianController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // validate the request
+        // Validate the request
         $request->validate([
             'student_id' => 'required|exists:students,id',
             'id_number' => 'required|numeric|digits:16',
@@ -130,27 +130,31 @@ class GuardianController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        // get the guard by id
+        // Check if the email is already in use by another user
+        $existingUser = User::where('email', $request->email)->where('id', '!=', $id)->first();
+        if ($existingUser) {
+            return redirect()->back()->withErrors(['email' => 'The email address is already in use by another user.'])->withInput();
+        }
+
+        // Get the guardian by id
         $guardian = User::findOrFail($id);
 
-        // upload the image when it is available
+        // Upload the image if it is available
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = $image->hashName();
             $image->storeAs('public/guardians', $imageName);
 
-            // delete the old image
+            // Delete the old image
             if ($guardian->image) {
                 Storage::delete('public/guardians/' . $guardian->image);
             }
-        }
-
-        // if image is not available or null
-        if (!isset($imageName)) {
+        } else {
+            // If image is not available or null, retain the old image name
             $imageName = $guardian->image;
         }
 
-        // update the guard
+        // Update the guardian
         $guardian->update([
             'student_id' => $request->student_id,
             'id_number' => $request->id_number,
@@ -164,9 +168,10 @@ class GuardianController extends Controller
             'image' => $imageName,
         ]);
 
-        // redirect to the guards index
+        // Redirect to the guardians index
         return redirect()->route('guardians.index')->with(['alert-type' => 'success', 'message' => 'Wali berhasil diperbarui!']);
     }
+
 
     /**
      * Remove the specified resource from storage.
