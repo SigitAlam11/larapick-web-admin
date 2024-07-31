@@ -21,55 +21,57 @@
                 <h6 class="m-0 font-weight-bold text-primary">Detail Siswa</h6>
             </div>
             <div class="card-body">
-                <table class="table table-bordered">
-                    <tr>
-                        <th>Status</th>
-                        <td>
-                            @if ($student->status == 'active')
-                                <span class="badge badge-success">{{ $student->status }}</span>
-                            @else
-                                <span class="badge badge-danger">{{ $student->status }}</span>
-                            @endif
-                        </td>
-                    <tr>
-                        <th>Nama</th>
-                        <td>{{ $student->name }}</td>
-                    </tr>
-                    <tr>
-                        <th>Kelas</th>
-                        <td>{{ $student->grade->name }}</td>
-                    </tr>
-                    <tr>
-                        <th>Tempat Lahir</th>
-                        <td>{{ $student->place_of_birth }}</td>
-                    </tr>
-                    <tr>
-                        <th>Tanggal Lahir</th>
-                        <td>{{ $student->date_of_birth }}</td>
-                    </tr>
-                    <tr>
-                        <th>Jenis Kelamin</th>
-                        <td>{{ $student->gender }}</td>
-                    </tr>
-                    <tr>
-                        <th>Alamat</th>
-                        <td>{{ $student->address }}</td>
-                    </tr>
-                    <tr>
-                        <th>Nomor Telepon</th>
-                        <td>{{ $student->phone }}</td>
-                    </tr>
-                    <tr>
-                        <th>Foto</th>
-                        <td>
-                            @if ($student->image)
-                                <img src="{{ $student->image_url }}" alt="{{ $student->name }}" width="100">
-                            @else
-                                No Image
-                            @endif
-                        </td>
-                    </tr>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Status</th>
+                            <td>
+                                @if ($student->status == 'active')
+                                    <span class="badge badge-success">{{ $student->status }}</span>
+                                @else
+                                    <span class="badge badge-danger">{{ $student->status }}</span>
+                                @endif
+                            </td>
+                        <tr>
+                            <th>Nama</th>
+                            <td>{{ $student->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Kelas</th>
+                            <td>{{ $student->grade->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Tempat Lahir</th>
+                            <td>{{ $student->place_of_birth }}</td>
+                        </tr>
+                        <tr>
+                            <th>Tanggal Lahir</th>
+                            <td>{{ $student->date_of_birth }}</td>
+                        </tr>
+                        <tr>
+                            <th>Jenis Kelamin</th>
+                            <td>{{ $student->gender }}</td>
+                        </tr>
+                        <tr>
+                            <th>Alamat</th>
+                            <td>{{ $student->address }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nomor Telepon</th>
+                            <td>{{ $student->phone }}</td>
+                        </tr>
+                        <tr>
+                            <th>Foto</th>
+                            <td>
+                                @if ($student->image)
+                                    <img src="{{ $student->image_url }}" alt="{{ $student->name }}" width="100">
+                                @else
+                                    No Image
+                                @endif
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
 
